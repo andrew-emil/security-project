@@ -1,0 +1,25 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 4000
+
+ENV PORT=4000 \
+    DB_HOST=mysql \
+    DB_PORT=3306 \
+    DB_USER=root \
+    DB_PASSWORD= \
+    DB_NAME=surgical_logbook_ms \
+    MONGO_URI=mongodb+srv://andrewemil343:EttmElMfGDYqvjzz@surgeries.hdgaj.mongodb.net/surgical_logbook?retryWrites=true&w=majority&appName=surgeries\
+    salt_rounds=10 \
+    environment=development \
+    EMAIL_USER=e9181d06f3d6a7 \
+    JWT_SECRET=mySecret1243
+
+CMD ["npm", "run", "dev"]
